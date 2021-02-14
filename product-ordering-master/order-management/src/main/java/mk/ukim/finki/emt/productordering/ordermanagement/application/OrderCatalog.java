@@ -1,7 +1,9 @@
 package mk.ukim.finki.emt.productordering.ordermanagement.application;
 
+import mk.ukim.finki.emt.productordering.ordermanagement.application.form.GradeForm;
 import mk.ukim.finki.emt.productordering.ordermanagement.application.form.OrderForm;
 import mk.ukim.finki.emt.productordering.ordermanagement.application.form.RecipientAddressForm;
+import mk.ukim.finki.emt.productordering.ordermanagement.domain.event.GradeLeft;
 import mk.ukim.finki.emt.productordering.ordermanagement.domain.event.OrderCreated;
 import mk.ukim.finki.emt.productordering.ordermanagement.domain.event.OrderItemAdded;
 import mk.ukim.finki.emt.productordering.ordermanagement.domain.model.*;
@@ -52,6 +54,21 @@ public class OrderCatalog {
         newOrder.getItems().forEach(orderItem -> applicationEventPublisher.publishEvent(new OrderItemAdded(newOrder.id(),orderItem.id(),orderItem.getProductId(),orderItem.getQuantity(), Instant.now())));
         return newOrder.id();
     }
+
+
+    public void leaveGrade(@NonNull GradeForm gradeForm)
+    {
+        Objects.requireNonNull(gradeForm,"grade must not be null");
+        var constraintViolations = validator.validate(gradeForm);
+
+        var p=productCatalog.findById(gradeForm.getProduct().getId());
+        //applicationEventPublisher.publishEvent(new GradeLeft(p.getId(),gradeForm.getGrade(),));
+        //???
+
+
+
+    }
+
 
     @NonNull
     public Optional<Order> findById(@NonNull OrderId orderId) {

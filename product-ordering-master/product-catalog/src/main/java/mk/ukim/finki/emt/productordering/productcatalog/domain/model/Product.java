@@ -25,6 +25,10 @@ public class Product extends AbstractEntity<ProductId> {
 
     private int quantity;
 
+    private int numOfReviews;
+
+    private float averageGrade;
+
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
 
@@ -76,5 +80,17 @@ public class Product extends AbstractEntity<ProductId> {
 
     public void addQuantity(int qnt) {
         this.quantity +=qnt;
+    }
+
+    public void addReview()
+    {
+        this.numOfReviews+=1;
+    }
+
+    public void changeAverageGrade(int grade)
+    {
+        averageGrade=(averageGrade*numOfReviews)+grade;
+        addReview();
+        averageGrade/=numOfReviews;
     }
 }

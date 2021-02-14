@@ -62,6 +62,8 @@ public class CreateOrderView extends VerticalLayout {
         tabContainer.addTab("Items", new Div(itemGrid, orderItemLayout));
 
 
+
+
         var billingAddress = new AddressLayout();
         billingAddress.bind(binder, OrderForm::getBillingAddress);
         tabContainer.addTab("Billing Address", billingAddress);

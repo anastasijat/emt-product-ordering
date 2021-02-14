@@ -3,6 +3,7 @@ package mk.ukim.finki.emt.productordering.productcatalog.application;
 import mk.ukim.finki.emt.productordering.productcatalog.domain.model.Product;
 import mk.ukim.finki.emt.productordering.productcatalog.domain.model.ProductId;
 import mk.ukim.finki.emt.productordering.productcatalog.domain.repository.ProductRepository;
+import mk.ukim.finki.emt.productordering.productcatalog.integration.GradeLeftEvent;
 import mk.ukim.finki.emt.productordering.productcatalog.integration.OrderItemAddedEvent;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,15 @@ public class ProductCatalog {
     public void onOrderCreatedEvent(OrderItemAddedEvent event) {
         Product p = productRepository.findById(event.getProductId()).orElseThrow(RuntimeException::new);
         p.subtractQuantity(event.getQuantity());
+        productRepository.save(p);
+    }
+
+    @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
+    public void onGradeLeftEvent(GradeLeftEvent gradeLeftEvent)
+    {
+        Product p=productRepository.findById(gradeLeftEvent.getProductId()).orElseThrow(RuntimeException::new);
+        p.addReview();
+        p.changeAverageGrade(gradeLeftEvent.getGrade());
         productRepository.save(p);
     }
 }
