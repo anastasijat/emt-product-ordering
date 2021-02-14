@@ -62,10 +62,7 @@ public class OrderCatalog {
         var constraintViolations = validator.validate(gradeForm);
 
         var p=productCatalog.findById(gradeForm.getProduct().getId());
-        //applicationEventPublisher.publishEvent(new GradeLeft(p.getId(),gradeForm.getGrade(),));
-        //???
-
-
+        applicationEventPublisher.publishEvent(new GradeLeft(p.getId(),gradeForm.getGrade(),Instant.now()));
 
     }
 

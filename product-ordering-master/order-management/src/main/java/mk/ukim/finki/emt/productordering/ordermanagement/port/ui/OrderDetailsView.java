@@ -2,19 +2,26 @@ package mk.ukim.finki.emt.productordering.ordermanagement.port.ui;
 
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
+import com.vaadin.flow.component.radiobutton.RadioGroupVariant;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.router.*;
 import mk.ukim.finki.emt.productordering.ordermanagement.application.OrderCatalog;
-import mk.ukim.finki.emt.productordering.ordermanagement.domain.model.Order;
-import mk.ukim.finki.emt.productordering.ordermanagement.domain.model.OrderId;
-import mk.ukim.finki.emt.productordering.ordermanagement.domain.model.OrderItem;
-import mk.ukim.finki.emt.productordering.ordermanagement.domain.model.RecipientAddress;
+import mk.ukim.finki.emt.productordering.ordermanagement.application.form.GradeForm;
+import mk.ukim.finki.emt.productordering.ordermanagement.domain.model.*;
 
+import java.awt.*;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Route("order")
 @PageTitle("Show Order")
@@ -22,8 +29,22 @@ public class OrderDetailsView extends VerticalLayout implements HasUrlParameter<
 
     private final OrderCatalog orderCatalog;
 
+    private ComboBox<OrderItemDTO> orderedItems;
+
+    private ConverterToOrderItemDto converter;
+
+    //private ComboBox<Integer> grades;
+
+    //private List<Integer> gradesList;
+
+    //private final Binder<GradeForm> binder;
+
+
+
     public OrderDetailsView(OrderCatalog orderCatalog) {
         this.orderCatalog = orderCatalog;
+        this.converter=new ConverterToOrderItemDto();
+
         setSizeFull();
     }
 
@@ -37,9 +58,13 @@ public class OrderDetailsView extends VerticalLayout implements HasUrlParameter<
         }
     }
 
+
+
     private void showOrder(Order order) {
         var title = new Html("<h3>Order Details</h3>");
         add(title);
+
+
 
         var header = new FormLayout();
         header.addFormItem(createReadOnlyTextField(order.getOrderedOn().toString()), "Ordered on");
@@ -55,7 +80,41 @@ public class OrderDetailsView extends VerticalLayout implements HasUrlParameter<
         var footerRow = items.appendFooterRow();
         footerRow.getCell(subtotalExcludingTax).setText(order.total().toString());
         add(items);
+
+
+        //////
+
+
+        /*var grades=new ComboBox<>("Grade",gradesList);
+        binder.forField(grades).asRequired()
+                .bind(GradeForm::getGrade,GradeForm::setGrade);
+
+
+        var addGrade = new Button("Add grade",evt-> leaveGrade());
+        addGrade.setEnabled(false);
+
+
+        add(addGrade);
+
+        binder.setBean(new GradeForm());
+        binder.addValueChangeListener(evt->addGrade.setEnabled(binder.isValid()));
+
+
+*/
+
+
+
+        /*
+
+        orderedItems=new ComboBox<>("Ordered Items",converter.convert(order.getItems().collect(Collectors.toList())));
+        orderedItems.setItemLabelGenerator(OrderItemDTO::getProductName);
+        add(orderedItems);
+        //////
+
+         */
     }
+
+
 
     private TextField createReadOnlyTextField(String value) {
         var textField = new TextField();

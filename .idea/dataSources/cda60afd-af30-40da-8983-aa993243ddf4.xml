@@ -797,7 +797,7 @@ false Zulu
     <database id="4" parent="1" name="orders4">
       <ObjectId>17079</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>953</IntrospectionStateNumber>
+      <IntrospectionStateNumber>982</IntrospectionStateNumber>
     </database>
     <database id="5" parent="1" name="postgres">
       <ObjectId>16581</ObjectId>
@@ -810,7 +810,7 @@ false Zulu
     <database id="7" parent="1" name="products4">
       <ObjectId>17078</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>954</IntrospectionStateNumber>
+      <IntrospectionStateNumber>984</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <role id="8" parent="1" name="pg_execute_server_program">
@@ -881,6 +881,7 @@ UC/10
 </Acl>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
+      <IntrospectionStateNumber>983</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="22" parent="4" name="plpgsql">
@@ -1005,7 +1006,7 @@ UC/10
 </Acl>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>955</IntrospectionStateNumber>
+      <IntrospectionStateNumber>985</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="37" parent="7" name="plpgsql">
@@ -1105,56 +1106,366 @@ UC/10
       <HandlerId>335</HandlerId>
       <Type>index</Type>
     </access-method>
-    <sequence id="49" parent="36" name="hibernate_sequence">
+    <sequence id="49" parent="21" name="hibernate_sequence">
+      <ObjectId>17142</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>963</StateNumber>
+      <DataType>bigint|0s</DataType>
+    </sequence>
+    <table id="50" parent="21" name="event_log">
+      <ObjectId>17103</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>956</StateNumber>
+    </table>
+    <table id="51" parent="21" name="order_items">
+      <ObjectId>17111</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>964</StateNumber>
+    </table>
+    <table id="52" parent="21" name="orders">
+      <ObjectId>17119</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>965</StateNumber>
+    </table>
+    <table id="53" parent="21" name="orders_order_items">
+      <ObjectId>17127</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>964</StateNumber>
+    </table>
+    <table id="54" parent="21" name="processed_remote_events">
+      <ObjectId>17135</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>960</StateNumber>
+    </table>
+    <sequence id="55" parent="36" name="hibernate_sequence">
       <ObjectId>17101</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>951</StateNumber>
       <DataType>bigint|0s</DataType>
     </sequence>
-    <table id="50" parent="36" name="event_log">
+    <table id="56" parent="36" name="event_log">
       <ObjectId>17080</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>948</StateNumber>
     </table>
-    <table id="51" parent="36" name="processed_remote_events">
+    <table id="57" parent="36" name="processed_remote_events">
       <ObjectId>17088</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>949</StateNumber>
     </table>
-    <table id="52" parent="36" name="product">
+    <table id="58" parent="36" name="product">
       <ObjectId>17093</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>950</StateNumber>
     </table>
-    <column id="53" parent="50" name="id">
+    <column id="59" parent="50" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>956</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="60" parent="50" name="domain_event_body">
+      <Position>2</Position>
+      <DataType>varchar(1024)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>956</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="61" parent="50" name="domain_event_class_name">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>956</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="62" parent="50" name="occurred_on">
+      <Position>4</Position>
+      <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>956</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <index id="63" parent="50" name="event_log_pkey">
+      <ObjectId>17109</ObjectId>
+      <StateNumber>956</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>0</CollationIds>
+      <ClassIds>3124</ClassIds>
+    </index>
+    <key id="64" parent="50" name="event_log_pkey">
+      <ObjectId>17110</ObjectId>
+      <StateNumber>956</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>event_log_pkey</UnderlyingIndexName>
+    </key>
+    <column id="65" parent="51" name="id">
+      <Position>1</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>957</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="66" parent="51" name="amount">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>957</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="67" parent="51" name="currency">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>957</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="68" parent="51" name="product_id">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>957</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="69" parent="51" name="qty">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>957</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="70" parent="51" name="order_items_pkey">
+      <ObjectId>17117</ObjectId>
+      <StateNumber>957</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>100</CollationIds>
+      <CollationNames>default</CollationNames>
+      <ClassIds>3126</ClassIds>
+    </index>
+    <key id="71" parent="51" name="order_items_pkey">
+      <ObjectId>17118</ObjectId>
+      <StateNumber>957</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>order_items_pkey</UnderlyingIndexName>
+    </key>
+    <column id="72" parent="52" name="id">
+      <Position>1</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>958</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="73" parent="52" name="billing_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>958</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="74" parent="52" name="billing_address">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>958</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="75" parent="52" name="city_name">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>958</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="76" parent="52" name="billing_country">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>958</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="77" parent="52" name="order_currency">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>958</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="78" parent="52" name="ordered_on">
+      <Position>7</Position>
+      <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>958</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="79" parent="52" name="order_state">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>958</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="80" parent="52" name="version">
+      <Position>9</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>958</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="81" parent="52" name="orders_pkey">
+      <ObjectId>17125</ObjectId>
+      <StateNumber>958</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>100</CollationIds>
+      <CollationNames>default</CollationNames>
+      <ClassIds>3126</ClassIds>
+    </index>
+    <key id="82" parent="52" name="orders_pkey">
+      <ObjectId>17126</ObjectId>
+      <StateNumber>958</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>orders_pkey</UnderlyingIndexName>
+    </key>
+    <column id="83" parent="53" name="order_id">
+      <Position>1</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>959</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="84" parent="53" name="items_id">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>959</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="85" parent="53" name="orders_order_items_pkey">
+      <ObjectId>17133</ObjectId>
+      <StateNumber>959</StateNumber>
+      <ColNames>order_id
+items_id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>100,100</CollationIds>
+      <CollationNames>default
+default</CollationNames>
+      <ClassIds>3126,3126</ClassIds>
+    </index>
+    <index id="86" parent="53" name="uk_trq4mhasmgs7dpi36hk0q8oi4">
+      <ObjectId>17140</ObjectId>
+      <StateNumber>962</StateNumber>
+      <ColNames>items_id</ColNames>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>100</CollationIds>
+      <CollationNames>default</CollationNames>
+      <ClassIds>3126</ClassIds>
+    </index>
+    <key id="87" parent="53" name="orders_order_items_pkey">
+      <ObjectId>17134</ObjectId>
+      <StateNumber>959</StateNumber>
+      <ColNames>order_id
+items_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>orders_order_items_pkey</UnderlyingIndexName>
+    </key>
+    <key id="88" parent="53" name="uk_trq4mhasmgs7dpi36hk0q8oi4">
+      <ObjectId>17141</ObjectId>
+      <StateNumber>962</StateNumber>
+      <ColNames>items_id</ColNames>
+      <UnderlyingIndexName>uk_trq4mhasmgs7dpi36hk0q8oi4</UnderlyingIndexName>
+    </key>
+    <foreign-key id="89" parent="53" name="fk3l8rktw0f4w5t6tift31e2d7c">
+      <ObjectId>17149</ObjectId>
+      <StateNumber>965</StateNumber>
+      <ColNames>order_id</ColNames>
+      <RefTableId>17119</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>orders</RefTableName>
+      <RefKeyName>orders_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="90" parent="53" name="fkjyll3gu3l9d1ekgurrr5xk5ee">
+      <ObjectId>17144</ObjectId>
+      <StateNumber>964</StateNumber>
+      <ColNames>items_id</ColNames>
+      <RefTableId>17111</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>order_items</RefTableName>
+      <RefKeyName>order_items_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="91" parent="54" name="source">
+      <Position>1</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>960</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="92" parent="54" name="last_processed_event_d">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>960</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="93" parent="54" name="processed_remote_events_pkey">
+      <ObjectId>17138</ObjectId>
+      <StateNumber>960</StateNumber>
+      <ColNames>source</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>100</CollationIds>
+      <CollationNames>default</CollationNames>
+      <ClassIds>3126</ClassIds>
+    </index>
+    <key id="94" parent="54" name="processed_remote_events_pkey">
+      <ObjectId>17139</ObjectId>
+      <StateNumber>960</StateNumber>
+      <ColNames>source</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>processed_remote_events_pkey</UnderlyingIndexName>
+    </key>
+    <column id="95" parent="56" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>948</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="54" parent="50" name="domain_event_body">
+    <column id="96" parent="56" name="domain_event_body">
       <Position>2</Position>
       <DataType>varchar(1024)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>948</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="55" parent="50" name="domain_event_class_name">
+    <column id="97" parent="56" name="domain_event_class_name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>948</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="56" parent="50" name="occurred_on">
+    <column id="98" parent="56" name="occurred_on">
       <Position>4</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>948</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <index id="57" parent="50" name="event_log_pkey">
+    <index id="99" parent="56" name="event_log_pkey">
       <ObjectId>17086</ObjectId>
       <StateNumber>948</StateNumber>
       <ColNames>id</ColNames>
@@ -1164,28 +1475,28 @@ UC/10
       <CollationIds>0</CollationIds>
       <ClassIds>3124</ClassIds>
     </index>
-    <key id="58" parent="50" name="event_log_pkey">
+    <key id="100" parent="56" name="event_log_pkey">
       <ObjectId>17087</ObjectId>
       <StateNumber>948</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>event_log_pkey</UnderlyingIndexName>
     </key>
-    <column id="59" parent="51" name="source">
+    <column id="101" parent="57" name="source">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>949</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="60" parent="51" name="last_processed_event_d">
+    <column id="102" parent="57" name="last_processed_event_d">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>949</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <index id="61" parent="51" name="processed_remote_events_pkey">
+    <index id="103" parent="57" name="processed_remote_events_pkey">
       <ObjectId>17091</ObjectId>
       <StateNumber>949</StateNumber>
       <ColNames>source</ColNames>
@@ -1196,74 +1507,74 @@ UC/10
       <CollationNames>default</CollationNames>
       <ClassIds>3126</ClassIds>
     </index>
-    <key id="62" parent="51" name="processed_remote_events_pkey">
+    <key id="104" parent="57" name="processed_remote_events_pkey">
       <ObjectId>17092</ObjectId>
       <StateNumber>949</StateNumber>
       <ColNames>source</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>processed_remote_events_pkey</UnderlyingIndexName>
     </key>
-    <column id="63" parent="52" name="id">
+    <column id="105" parent="58" name="id">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>950</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="64" parent="52" name="average_grade">
+    <column id="106" parent="58" name="average_grade">
       <Position>2</Position>
       <DataType>real|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>950</StateNumber>
       <TypeId>700</TypeId>
     </column>
-    <column id="65" parent="52" name="deleted">
+    <column id="107" parent="58" name="deleted">
       <Position>3</Position>
       <DataType>boolean|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>950</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="66" parent="52" name="name">
+    <column id="108" parent="58" name="name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>950</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="67" parent="52" name="num_of_reviews">
+    <column id="109" parent="58" name="num_of_reviews">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>950</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="68" parent="52" name="amount">
+    <column id="110" parent="58" name="amount">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>950</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="69" parent="52" name="currency">
+    <column id="111" parent="58" name="currency">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>950</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="70" parent="52" name="quantity">
+    <column id="112" parent="58" name="quantity">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>950</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="71" parent="52" name="version">
+    <column id="113" parent="58" name="version">
       <Position>9</Position>
       <DataType>bigint|0s</DataType>
       <StateNumber>950</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <index id="72" parent="52" name="product_pkey">
+    <index id="114" parent="58" name="product_pkey">
       <ObjectId>17099</ObjectId>
       <StateNumber>950</StateNumber>
       <ColNames>id</ColNames>
@@ -1274,7 +1585,7 @@ UC/10
       <CollationNames>default</CollationNames>
       <ClassIds>3126</ClassIds>
     </index>
-    <key id="73" parent="52" name="product_pkey">
+    <key id="115" parent="58" name="product_pkey">
       <ObjectId>17100</ObjectId>
       <StateNumber>950</StateNumber>
       <ColNames>id</ColNames>

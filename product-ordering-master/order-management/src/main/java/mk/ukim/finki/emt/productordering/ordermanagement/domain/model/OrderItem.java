@@ -18,6 +18,8 @@ public class OrderItem extends AbstractEntity<OrderItemId> {
     @AttributeOverride(name="id",column = @Column(name="product_id",nullable = false))
     private ProductId productId;
 
+
+
     @Embedded
     private Money itemPrice;
 
