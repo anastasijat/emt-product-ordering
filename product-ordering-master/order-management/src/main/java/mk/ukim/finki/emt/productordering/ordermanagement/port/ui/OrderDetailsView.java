@@ -33,13 +33,6 @@ public class OrderDetailsView extends VerticalLayout implements HasUrlParameter<
 
     private ConverterToOrderItemDto converter;
 
-    //private ComboBox<Integer> grades;
-
-    //private List<Integer> gradesList;
-
-    //private final Binder<GradeForm> binder;
-
-
 
     public OrderDetailsView(OrderCatalog orderCatalog) {
         this.orderCatalog = orderCatalog;
@@ -104,14 +97,12 @@ public class OrderDetailsView extends VerticalLayout implements HasUrlParameter<
 
 
 
-        /*
 
-        orderedItems=new ComboBox<>("Ordered Items",converter.convert(order.getItems().collect(Collectors.toList())));
+
+        /*orderedItems=new ComboBox<>("Ordered Items",converter.convert(order.getItems()));
         orderedItems.setItemLabelGenerator(OrderItemDTO::getProductName);
-        add(orderedItems);
-        //////
+        add(orderedItems);*/
 
-         */
     }
 
 

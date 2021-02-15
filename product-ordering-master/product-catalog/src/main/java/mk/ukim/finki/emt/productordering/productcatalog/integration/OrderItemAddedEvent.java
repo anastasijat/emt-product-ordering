@@ -3,9 +3,9 @@ package mk.ukim.finki.emt.productordering.productcatalog.integration;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import mk.ukim.finki.emt.productordering.productcatalog.domain.model.ProductId;
 import mk.ukim.finki.emt.productordering.productcatalog.domain.model.OrderId;
 import mk.ukim.finki.emt.productordering.productcatalog.domain.model.OrderItemId;
-import mk.ukim.finki.emt.productordering.productcatalog.domain.model.ProductId;
 import mk.ukim.finki.emt.productordering.sharedkernel.domain.base.DomainEvent;
 
 import java.time.Instant;

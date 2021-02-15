@@ -14,4 +14,6 @@ public class Product {
 
     private int quantity;
 
+    private Restaurant restaurant;
+
 }

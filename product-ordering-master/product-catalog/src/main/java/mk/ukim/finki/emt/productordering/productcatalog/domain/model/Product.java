@@ -23,7 +23,15 @@ public class Product extends AbstractEntity<ProductId> {
     })
     private Money price;
 
-    private int quantity;
+    /*@Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "restaurant_name", column = @Column(name = "restaurant_name"))
+    })
+    private Restaurant restaurant;*/
+
+    //private int quantity;
+
+    private int numOfOrders;
 
     private int numOfReviews;
 
@@ -36,18 +44,21 @@ public class Product extends AbstractEntity<ProductId> {
 
     }
 
-    public Product(ProductId productId, String name, Money price, int quantity) {
+    public Product(ProductId productId, String name, Money price)
+    {
         super(productId);
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
+        this.numOfOrders=0;
     }
 
 
-    public Product(String name, Money price, int quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
+    public int getNumOfOrders() {
+        return numOfOrders;
+    }
+
+    public void setNumOfOrders(int numOfOrders) {
+        this.numOfOrders = numOfOrders;
     }
 
     @JsonProperty("name")
@@ -63,24 +74,13 @@ public class Product extends AbstractEntity<ProductId> {
         return price;
     }
 
-    public int getQuantity() {
-        return quantity;
+
+    public void addOrder()
+    {
+        this.numOfOrders+=1;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
-    public void subtractQuantity(int qnt) {
-        if (qnt>this.quantity) {
-            throw new RuntimeException("unsupported quantity");
-        }
-        this.quantity -= qnt;
-    }
-
-    public void addQuantity(int qnt) {
-        this.quantity +=qnt;
-    }
 
     public void addReview()
     {

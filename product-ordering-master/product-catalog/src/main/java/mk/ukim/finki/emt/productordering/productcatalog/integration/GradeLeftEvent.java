@@ -3,10 +3,8 @@ package mk.ukim.finki.emt.productordering.productcatalog.integration;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
-import mk.ukim.finki.emt.productordering.productcatalog.domain.model.Product;
 import mk.ukim.finki.emt.productordering.productcatalog.domain.model.ProductId;
 import mk.ukim.finki.emt.productordering.sharedkernel.domain.base.DomainEvent;
-import org.atmosphere.config.service.Get;
 
 import java.time.Instant;
 
@@ -25,7 +23,7 @@ public class GradeLeftEvent implements DomainEvent {
 
     @JsonCreator
 
-    public GradeLeftEvent(ProductId productId, int grade,Instant occurredOn) {
+    public GradeLeftEvent(ProductId productId, int grade, Instant occurredOn) {
         this.productId = productId;
         this.grade = grade;
         this.occurredOn=occurredOn;

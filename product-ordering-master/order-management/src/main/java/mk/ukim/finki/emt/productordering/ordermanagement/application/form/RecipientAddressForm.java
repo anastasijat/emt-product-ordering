@@ -1,7 +1,7 @@
 package mk.ukim.finki.emt.productordering.ordermanagement.application.form;
 
 import lombok.Data;
-import mk.ukim.finki.emt.productordering.sharedkernel.domain.geo.CityName;
+import mk.ukim.finki.emt.productordering.sharedkernel.domain.geo.City;
 import mk.ukim.finki.emt.productordering.sharedkernel.domain.geo.Country;
 
 import javax.validation.constraints.NotEmpty;
@@ -16,7 +16,7 @@ public class RecipientAddressForm implements Serializable {
     @NotEmpty
     private String address;
     @NotNull
-    private CityName city;
+    private City city;
     @NotNull
     private Country country;
 

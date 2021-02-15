@@ -2,7 +2,7 @@ package mk.ukim.finki.emt.productordering.ordermanagement.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import mk.ukim.finki.emt.productordering.sharedkernel.domain.geo.Address;
-import mk.ukim.finki.emt.productordering.sharedkernel.domain.geo.CityName;
+import mk.ukim.finki.emt.productordering.sharedkernel.domain.geo.City;
 import mk.ukim.finki.emt.productordering.sharedkernel.domain.geo.Country;
 import org.springframework.lang.NonNull;
 
@@ -21,7 +21,7 @@ public class RecipientAddress extends Address {
     }
 
     public RecipientAddress(@NonNull String name, @NonNull String address,
-                            @NonNull CityName city, @NonNull Country country) {
+                            @NonNull City city, @NonNull Country country) {
         super(address, city, country);
         this.name = Objects.requireNonNull(name, "name must not be null");
     }

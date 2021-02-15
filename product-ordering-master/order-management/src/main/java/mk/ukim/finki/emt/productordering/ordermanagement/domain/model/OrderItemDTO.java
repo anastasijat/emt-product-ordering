@@ -17,7 +17,7 @@ public class OrderItemDTO {
 
     public String getProductName()
     {
-        return this.product.getName();
+        return product.getName();
     }
 
 

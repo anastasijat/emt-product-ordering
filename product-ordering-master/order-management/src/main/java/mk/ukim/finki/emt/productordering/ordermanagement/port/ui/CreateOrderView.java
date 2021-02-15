@@ -14,6 +14,8 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.Setter;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.function.ValueProvider;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import mk.ukim.finki.emt.productordering.ordermanagement.application.OrderCatalog;
@@ -28,7 +30,7 @@ import mk.ukim.finki.emt.productordering.sharedkernel.port.ui.StringToCityNameCo
 
 @Route("create-order")
 @PageTitle("Create Order")
-public class CreateOrderView extends VerticalLayout {
+public class CreateOrderView extends VerticalLayout implements HasUrlParameter<String> {
 
     private final ProductCatalog productCatalog;
     private final OrderCatalog orderCatalog;
@@ -100,12 +102,15 @@ public class CreateOrderView extends VerticalLayout {
         }
     }
 
+    @Override
+    public void setParameter(BeforeEvent beforeEvent, String s) {
+
+    }
+
     class AddressLayout extends VerticalLayout {
 
         private TextField name;
         private TextField address;
-        private TextField addressLine2;
-        private TextField postalCode;
         private TextField city;
         private ComboBox<Country> country;
 
@@ -114,18 +119,22 @@ public class CreateOrderView extends VerticalLayout {
             setWidth("630px");
 
             name = createTextField("Name");
-            address = createTextField("Address line 1");
+            address = createTextField("Street");
             city = createTextField("City");
-            country = new ComboBox<>("Country", Country.values());
-            country.setWidth("100%");
+            //city.setValue(0);
+            //city.setReadOnly(true);
+            //country = new ComboBox<>("Country", Country.values());
+            //country.setWidth("100%");
+
+
 
             var line1 = new HorizontalLayout(name, address);
             line1.setWidth("100%");
 
-            var line2 = new HorizontalLayout(city, country);
-            line2.setWidth("100%");
+            //var line2 = new HorizontalLayout(city, country);
+            //line2.setWidth("100%");
 
-            add(line1, line2);
+            add(line1);
         }
 
         private TextField createTextField(String caption) {
@@ -142,13 +151,15 @@ public class CreateOrderView extends VerticalLayout {
                     .asRequired()
                     .bind(getter(parentProvider, RecipientAddressForm::getAddress), setter(parentProvider, RecipientAddressForm::setAddress));
 
-            binder.forField(city)
+           /* binder.forField(city)
                     .asRequired()
                     .withConverter(new StringToCityNameConverter())
                     .bind(getter(parentProvider, RecipientAddressForm::getCity), setter(parentProvider, RecipientAddressForm::setCity));
             binder.forField(country)
                     .asRequired()
                     .bind(getter(parentProvider, RecipientAddressForm::getCountry), setter(parentProvider, RecipientAddressForm::setCountry));
+              */
+
         }
 
         private <V> ValueProvider<OrderForm, V> getter(ValueProvider<OrderForm, RecipientAddressForm> parentProvider, ValueProvider<RecipientAddressForm, V> valueProvider) {
@@ -166,7 +177,6 @@ public class CreateOrderView extends VerticalLayout {
         private ComboBox<Product> product;
         private TextField quantity;
         private TextField itemPrice;
-//        private TextField tax;
         private Button addItem;
 
         OrderItemLayout() {
@@ -176,11 +186,6 @@ public class CreateOrderView extends VerticalLayout {
             product = new ComboBox<>("Product", productCatalog.findAll());
             product.setItemLabelGenerator(Product::getName);
             add(product);
-
-//            tax = new TextField("VAT");
-//            tax.setReadOnly(true);
-//            tax.setWidth("60px");
-//            add(tax);
 
             itemPrice = new TextField("Price");
             itemPrice.setReadOnly(true);

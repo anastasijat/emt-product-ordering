@@ -15,7 +15,7 @@ public class Address implements ValueObject {
     private String address;
     @Column(name = "city")
     @Embedded
-    private CityName city;
+    private City city;
     @Column(name = "country")
     @Enumerated(EnumType.STRING)
     private Country country;
@@ -24,7 +24,7 @@ public class Address implements ValueObject {
     protected Address() {
     }
 
-    public Address(@NonNull String address, @NonNull CityName city,
+    public Address(@NonNull String address, @NonNull City city,
                    @NonNull Country country) {
         this.address = address;
         this.city = city;
@@ -39,7 +39,7 @@ public class Address implements ValueObject {
 
     @NonNull
     @JsonProperty("city")
-    public CityName city() {
+    public City city() {
         return city;
     }
 

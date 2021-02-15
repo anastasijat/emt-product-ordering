@@ -13,16 +13,16 @@ import java.util.Objects;
  * Value object representing the name of a city.
  */
 @Embeddable
-public class CityName implements ValueObject {
+public class City implements ValueObject {
 
     @Column(name="city_name")
     private final String name;
 
     //unused
-    private CityName() {this.name="";}
+    private City() {this.name="";}
 
     @JsonCreator
-    public CityName(@NonNull String name) {
+    public City(@NonNull String name) {
         this.name = Objects.requireNonNull(name, "name must not be null");
     }
 
@@ -30,8 +30,8 @@ public class CityName implements ValueObject {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CityName cityName = (CityName) o;
-        return Objects.equals(name, cityName.name);
+        City city = (City) o;
+        return Objects.equals(name, city.name);
     }
 
     @Override

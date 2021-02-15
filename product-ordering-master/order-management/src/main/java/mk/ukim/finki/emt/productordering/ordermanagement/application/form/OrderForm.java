@@ -1,6 +1,8 @@
 package mk.ukim.finki.emt.productordering.ordermanagement.application.form;
 
 import mk.ukim.finki.emt.productordering.sharedkernel.domain.financial.Currency;
+import mk.ukim.finki.emt.productordering.sharedkernel.domain.geo.City;
+import mk.ukim.finki.emt.productordering.sharedkernel.domain.geo.Country;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -17,6 +19,12 @@ public class OrderForm implements Serializable {
     @Valid
     @NotNull
     private RecipientAddressForm billingAddress = new RecipientAddressForm();
+
+    public OrderForm()
+    {
+        this.billingAddress.setCity(new City("Skopje"));
+        this.billingAddress.setCountry(Country.MK);
+    }
 
     @Valid
     @NotEmpty
